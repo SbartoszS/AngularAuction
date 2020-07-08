@@ -5,7 +5,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
+import { ProductService, Product } from './shared/services';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +19,7 @@ import { AppComponent } from './app.component';
     FlexLayoutModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
