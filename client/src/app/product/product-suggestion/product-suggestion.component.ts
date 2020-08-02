@@ -1,7 +1,8 @@
-import { map, startWith } from 'rxjs/operators';
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { API_BASE_URL } from '../../app.tokens';
 import { Product } from '../../shared/services';
 
 @Component({
@@ -20,10 +21,17 @@ export class ProductSuggestionComponent {
     ['xl', 3],
   ]);
 
-  constructor(private media: MediaObserver) {
+  constructor(
+    @Inject(API_BASE_URL) private readonly baseUrl: string,
+    private readonly media: MediaObserver
+  ) {
     this.columns$ = this.media.media$.pipe(
       map((mc) => <number>this.breakpointsToColumnsNumber.get(mc.mqAlias)),
       startWith(3)
     );
+  }
+
+  urlFor(product: Product): string {
+    return `${this.baseUrl}/${product.imageUrl}`;
   }
 }
