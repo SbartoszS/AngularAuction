@@ -8,6 +8,9 @@ export class SearchPage {
     const minPrice = $('input[formControlName="minPrice"]');
     const maxPrice = $('input[formControlName="maxPrice"]');
 
+    minPrice.sendKeys(minimalPrice);
+    maxPrice.sendKeys(maximumPrice);
+
     const searchOnForm = element(by.buttonText('SZUKAJ'));
 
     searchOnForm.click();
