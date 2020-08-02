@@ -7,23 +7,25 @@ import { Product, ProductService } from '../../shared/services';
 
 @Component({
   selector: 'nga-categories',
-  styleUrls: [ './categories.component.scss' ],
+  styleUrls: ['./categories.component.scss'],
   templateUrl: './categories.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoriesComponent {
-  readonly categoriesNames$: Observable<string[]>;
+  readonly categories$: Observable<string[]>;
   readonly products$: Observable<Product[]>;
 
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute
   ) {
-    this.categoriesNames$ = this.productService.getDistinctCategories().pipe(
-      map(categories => ['wszystkie produkty', ...categories]));
+    this.categories$ = this.productService
+      .getAllCategories()
+      .pipe(map((categories) => ['wszystkie produkty', ...categories]));
 
     this.products$ = this.route.params.pipe(
-      switchMap(({ category }) => this.getCategory(category)));
+      switchMap(({ category }) => this.getCategory(category))
+    );
   }
 
   private getCategory(category: string): Observable<Product[]> {
