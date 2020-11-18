@@ -1,3 +1,5 @@
+# AngularAuction
+Simple auction written in Angular as part of the exercises.
 
 ## Technology
 * HTML5
