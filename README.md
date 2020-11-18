@@ -4,6 +4,14 @@
 * CSS3
 * JavaScript
 * Angular
+* Node
+* Express
+* WebSockets
+
+
+## Library
+* Flex Layout
+* Angular Material
 
 ## Locally run
 
